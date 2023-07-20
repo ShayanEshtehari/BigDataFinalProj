@@ -1,0 +1,94 @@
+#query‫ب‬ : Display the 10 recent posts that have been newly added to the system
+
+GET /news./_search
+{
+  "_source": ["text"],
+  "query": {
+    "match_all": {}
+  },
+  "size": 10,
+  "sort": [
+    {
+      "date": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+#query‫ج‬ : Display the number of posts based on the top 10 most used keywords
+
+GET /news./_search
+{
+  "size": 0,
+  "aggs": {
+    "top_keywords": {
+      "terms": {
+        "field": "keywords",
+        "size": 10
+      }
+    }
+  }
+}
+
+
+
+GET /news./_count
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "match": { "text": "دلار" }},
+        { "match": { "text": "قیمت" }},
+        { "match": { "text": "سطح" }},
+        { "match": { "text": "طلا" }},
+        { "match": { "text": "کوین" }},
+        { "match": { "text": "درصد" }},
+        { "match": { "text": "بازار" }},
+        { "match": { "text": "بیت" }},
+        { "match": { "text": "کاهش" }},
+        { "match": { "text": "ریال" }}
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+query‫د‬ : Display posts that include a specific word
+
+GET /news./_search
+{
+  "query": {
+    "match": {
+      "text": "کریپتو"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

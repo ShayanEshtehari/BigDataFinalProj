@@ -1,0 +1,12 @@
+scrapy
+pandas
+colorlog
+beautifulsoup4
+lxml
+python-magic
+jsonlines
+peewee
+psycopg2-binary
+attrs
+sqlalchemy-utils
+django
